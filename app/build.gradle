@@ -51,7 +51,9 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
+    compile 'com.android.support:cardview-v7:23.4.0'
     compile 'com.android.support:multidex:1.0.1'
+    compile 'com.github.rey5137:material:1.2.4'
 
 //    // test multidex
 //    compile group: 'com.google.guava', name: 'guava', version: '19.0'
@@ -59,7 +61,7 @@ dependencies {
 }
 
 amigo {
-    disable false
+    disable true
 }
 
 
@@ -107,14 +109,14 @@ def deletePatchApk() {
     runCmd("adb shell rm -rf /sdcard/${getPatchApkName()}")
 }
 
-task runHost(dependsOn: assembleHost) << {
-    deletePatchApk()
-    runCmd("adb uninstall ${getPkg()}")
-    runCmd("adb install -r ${getHostApk()}")
-    launch()
-}
+//task runHost(dependsOn: assembleHost) << {
+//    deletePatchApk()
+//    runCmd("adb uninstall ${getPkg()}")
+//    runCmd("adb install -r ${getHostApk()}")
+//    launch()
+//}
 
-task preparePatch(dependsOn: assemblePatch) << {
-    deletePatchApk()
-    runCmd("adb push ${getPatchApk()} /sdcard/${getPatchApkName()}")
-}
+//task preparePatch(dependsOn: assemblePatch) << {
+//    deletePatchApk()
+//    runCmd("adb push ${getPatchApk()} /sdcard/${getPatchApkName()}")
+//}
